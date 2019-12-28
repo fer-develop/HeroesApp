@@ -27,4 +27,14 @@ export class TablaComponent implements OnInit {
   ngOnInit() {
   }
 
+  eliminarHeroe(id: string) {
+    this.hs.eliminarHeroe(id).subscribe(resp => {
+      console.log(resp);
+      for (let i = 0; i < this.heroes.length; ++i) {
+        if (this.heroes[i].id === id) {
+          this.heroes.splice(i, 1);
+        }
+      }
+    });
+  }
 }

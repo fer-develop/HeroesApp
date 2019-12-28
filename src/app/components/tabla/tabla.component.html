@@ -29,7 +29,7 @@
             <td data-title="High" class="numeric">{{ heroe.vivo }}</td>
             <td>
               <button class="btn btn-info" (click)="modificar(heroe.id)">Editar</button>
-              <button class="btn btn-danger">Borrar</button>
+              <button class="btn btn-danger" (click)="eliminarHeroe(heroe.id)">Borrar</button>
             </td>
           </tr>
         </tbody>

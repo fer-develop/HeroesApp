@@ -31,7 +31,7 @@ export class AgregarComponent implements OnInit {
       'vivo': new FormControl(true),
       'email': new FormControl('', [Validators.required, Validators.pattern('[a-z0-9._%+-]+@[a-z0-9.-]+\.[a-z]{2,3}$')])
     });
-    console.log(this.forma);
+    // console.log(this.forma);
   }
 
   ngOnInit() {
@@ -42,11 +42,11 @@ export class AgregarComponent implements OnInit {
       return;
     }
     this.ar.params.subscribe(params => {
-      if (params['id'] === null) {
+      if (!params['id']) {
         this.hs.agregarHeroe(this.forma.value).subscribe(resp => console.log(resp));
         this.forma.reset();
       } else {
-        //modificar el valor del heroe
+        // modificar el valor del heroe
         // console.log(this.forma);
         this.hs.actualizarHeroe(this.forma.value, params['id']).subscribe(resp => {
           // console.log(resp);
