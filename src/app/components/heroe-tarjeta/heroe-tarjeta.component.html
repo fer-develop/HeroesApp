@@ -1,0 +1,22 @@
+<div class="container mt-5">
+  <h3 *ngIf="termino.length !== 0">Termino de busqueda: {{ termino }}</h3>
+  <div class="card-columns">
+    <div class="card" *ngFor="let heroe of heroes; let i = index;">
+      <img class="card-img-top" [src]="heroe.img" alt="Card image cap">
+      <div class="card-body">
+        <h5 class="card-title">{{ heroe.nombre }}</h5>
+        <p class="card-text"> {{ heroe.bio }}</p>
+        <p class="card-text"><small class="text-muted">{{ heroe.aparicion | date:'y'}}</small></p>
+        <a [routerLink]="['/heroe',i]" class="btn btn-primary btn-block">Ver mas...</a>
+      </div>
+    </div>
+  </div>
+  <div *ngIf="cargando" class="alert alert-info text-center" role="alert">
+    <i class="fas fa-sync-alt fa-spin fa-5x"></i>
+    <h3 class="mt-2">Cargando...</h3>
+  </div>
+  <div *ngIf="!estado && !cargando" class="alert alert-warning text-center" role="alert">
+    <i class="fas fa-box-open fa-5x"></i>
+    <h3>No hay resultados</h3>
+  </div>
+</div>

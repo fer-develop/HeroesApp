@@ -1,0 +1,39 @@
+<div class="container mt-4">
+  <div class="form-group">
+    <label for="">Buscar por nombre y id:</label>
+    <input type="text" class="form-control" name="buscar" [(ngModel)]="buscar">
+  </div>
+  <div class="row">
+    <div id="no-more-tables" class="table-responsive-sm">
+      <table class="col-md-12 table-bordered table-striped table-condensed table" *ngIf="cargada">
+        <thead class="thead-dark">
+          <tr>
+            <th>ID</th>
+            <th>Nombre</th>
+            <th>Biografia</th>
+            <th>Imagen</th>
+            <th>Aparicion</th>
+            <th>Correo</th>
+            <th>Estado</th>
+            <th>Opciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          <tr *ngFor="let heroe of heroes | filtrarTabla:['nombre','id']:buscar">
+            <td data-title="">{{ heroe.id }}</td>
+            <td data-title="Company">{{ heroe.nombre }}</td>
+            <td data-title="Price" class="numeric">{{ heroe.bio }}</td>
+            <td data-title="Change" class="numeric">{{ heroe.img}}</td>
+            <td data-title="Change %" class="numeric">{{ heroe.aparicion }}</td>
+            <td data-title="Open" class="numeric">{{ heroe.email }}</td>
+            <td data-title="High" class="numeric">{{ heroe.vivo }}</td>
+            <td>
+              <button class="btn btn-info" (click)="modificar(heroe.id)">Editar</button>
+              <button class="btn btn-danger">Borrar</button>
+            </td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</div>

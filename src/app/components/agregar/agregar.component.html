@@ -1,0 +1,66 @@
+<div class="container mt-5 center_div">
+  <div class="row justify-content-center">
+    <form [formGroup]="forma" class="col-md-6">
+      <div class="form-group"
+        [ngClass]="{'has-danger': forma.controls['nombre'].invalid && forma.controls['nombre'].dirty}">
+        <label>Nombre del Heroe:</label>
+        <input formControlName="nombre" type="text" class="form-control" placeholder="Nombre del heroe">
+      </div>
+      <div *ngIf="forma.get('nombre').errors?.required && forma.controls['nombre'].dirty"
+        class="alert alert-danger animated fadeIn fast" role="alert">
+        Introduzca el Nombre del heroe
+      </div>
+      <div *ngIf="forma.get('nombre').errors?.minlength && forma.controls['nombre'].dirty"
+        class="alert alert-danger animated fadeIn fast" role="alert">
+        El nombre debe tener por lo menos 5 caracteres
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': forma.controls['bio'].invalid  && forma.controls['bio'].dirty}">
+        <label>Biografia:</label>
+        <textarea formControlName="bio" class="form-control" rows="4"></textarea>
+      </div>
+      <div *ngIf="forma.get('bio').errors?.required  && forma.controls['bio'].dirty"
+        class="alert alert-danger animated fadeIn fast" role="alert">
+        Introduzca la biografia del Heroe
+      </div>
+      <div class="form-group" [ngClass]="{'has-danger': forma.controls['img'].invalid  && forma.controls['img'].dirty}">
+        <label>Imagen:</label>
+        <input formControlName="img" class="form-control" rows="4">
+      </div>
+      <div class="form-group"
+        [ngClass]="{'has-danger': forma.controls['aparicion'].invalid  && forma.controls['aparicion'].dirty}">
+        <label>Aparicion:</label>
+        <input type="date" formControlName="aparicion" class="form-control">
+      </div>
+      <div *ngIf="forma.controls['aparicion'].invalid  && forma.controls['aparicion'].dirty"
+        class="alert alert-danger animated fadeIn fast" role="alert">
+        Introduzca la fecha de aparicion del Heroe
+      </div>
+      <div class="form-group"
+        [ngClass]="{'has-danger': forma.controls['email'].invalid  && forma.controls['email'].dirty}">
+        <label>Email address</label>
+        <input (keydown.enter)="agregarHeroe()" formControlName="email" type="text" class="form-control"
+          id="exampleFormControlInput1" placeholder="nombre@ejemplo.com">
+      </div>
+      <div *ngIf="forma.get('email').errors?.required  && forma.controls['email'].dirty"
+        class="alert alert-danger animated fadeIn fast" role="alert">
+        Introduzca su correo electronico
+      </div>
+      <div *ngIf="forma.controls['email'].invalid  && forma.controls['email'].dirty"
+        class="alert alert-danger animated fadeIn fast" role="alert">
+        Debe ser un correo valido
+      </div>
+      <div class="form-group">
+        <label for="exampleFormControlTextarea1">Estado:</label>
+        <button *ngIf="vivo" (click)="cambiar(false)" type="button" class="btn btn-success btn-block">Vivo</button>
+        <button *ngIf="!vivo" (click)="cambiar(true)" type="button" class="btn btn-danger btn-block">Muerto</button>
+      </div>
+      <div class="float-right">
+        <button type="button" (click)="agregarHeroe(forma)" class="btn btn-outline-success">Agregar</button>
+        <button type="button" (click)="agregarHeroe()" class="btn btn-outline-danger ml-2">Cancelar</button>
+      </div>
+      Formulario Valido: <b>{{ forma.valid }}</b>
+    </form>
+
+  </div>
+
+</div>
