@@ -3,7 +3,7 @@ import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { HttpClient } from '@angular/common/http';
 import { HeroesService } from '../../services/heroes.service';
 import { ActivatedRoute } from '@angular/router';
-
+import Swal from 'sweetalert2';
 
 @Component({
   selector: 'app-agregar',
@@ -43,18 +43,28 @@ export class AgregarComponent implements OnInit {
     }
     this.ar.params.subscribe(params => {
       if (!params['id']) {
-        this.hs.agregarHeroe(this.forma.value).subscribe(resp => console.log(resp));
+        this.hs.agregarHeroe(this.forma.value).subscribe(resp => {
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El heroe ha sido registrado',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }, (err) => console.log(err));
         this.forma.reset();
       } else {
-        // modificar el valor del heroe
-        // console.log(this.forma);
         this.hs.actualizarHeroe(this.forma.value, params['id']).subscribe(resp => {
-          // console.log(resp);
-        });
+          Swal.fire({
+            position: 'top-end',
+            icon: 'success',
+            title: 'El heroe ha sido actualizado con exito',
+            showConfirmButton: false,
+            timer: 1500
+          });
+        }, (err) => console.log(err));
       }
     });
-    // console.log(this.forma);
-    // console.log(this.forma.value);
   }
 
   cambiar(valor: boolean) {

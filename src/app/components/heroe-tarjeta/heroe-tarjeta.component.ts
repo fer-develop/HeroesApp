@@ -12,7 +12,7 @@ export class HeroeTarjetaComponent implements OnInit {
   // tslint:disable-next-line: no-input-rename
   @Input('heroes') heroes: Heroe[];
   @Input('cargando') cargando;
-  @Input('estado') estado = true;
+  @Input('estado') estado;
   @Input('termino') termino = '';
   constructor(private ar: ActivatedRoute) {
 

@@ -15,7 +15,7 @@
     <i class="fas fa-sync-alt fa-spin fa-5x"></i>
     <h3 class="mt-2">Cargando...</h3>
   </div>
-  <div *ngIf="!estado && !cargando" class="alert alert-warning text-center" role="alert">
+  <div *ngIf="heroes.length < 1" class="alert alert-warning text-center" role="alert">
     <i class="fas fa-box-open fa-5x"></i>
     <h3>No hay resultados</h3>
   </div>
