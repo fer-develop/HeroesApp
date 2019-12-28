@@ -80,10 +80,9 @@ export class HeroesService {
       );
   }
 
-  actualizarHeroe(heroe: any) {
+  actualizarHeroe(heroe: any, id: string) {
 
-    //borrar el id de la forma
-    this.http.put(`${this.url}/heroes/${heroe.id}.json`, heroe);
+    return this.http.put(`${this.url}/heroes/${id}.json`, heroe);
   }
   obtenerHeroe(id: string) {
     return this.http.get(`${this.url}/heroes/${id}.json`);

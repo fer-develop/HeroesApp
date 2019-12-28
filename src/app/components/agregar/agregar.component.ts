@@ -47,7 +47,10 @@ export class AgregarComponent implements OnInit {
         this.forma.reset();
       } else {
         //modificar el valor del heroe
-
+        // console.log(this.forma);
+        this.hs.actualizarHeroe(this.forma.value, params['id']).subscribe(resp => {
+          // console.log(resp);
+        });
       }
     });
     // console.log(this.forma);
